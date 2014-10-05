@@ -1,0 +1,56 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="SpiritBondOffset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="InventoryAddress" Type="System.Int32[]" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfInt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;int&gt;16821120&lt;/int&gt;
+  &lt;int&gt;0&lt;/int&gt;
+&lt;/ArrayOfInt&gt;</Value>
+    </Setting>
+    <Setting Name="EquippedWeaponIDOffset" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">6536</Value>
+    </Setting>
+    <Setting Name="NexusIDStart" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">7863</Value>
+    </Setting>
+    <Setting Name="NexusNames" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;Curtana&lt;/string&gt;
+  &lt;string&gt;Sphairai&lt;/string&gt;
+  &lt;string&gt;Bravura&lt;/string&gt;
+  &lt;string&gt;Gae Bolg&lt;/string&gt;
+  &lt;string&gt;Artemis Bow&lt;/string&gt;
+  &lt;string&gt;Thyrus&lt;/string&gt;
+  &lt;string&gt;Stardust Rod&lt;/string&gt;
+  &lt;string&gt;Veil Of Wiyu&lt;/string&gt;
+  &lt;string&gt;Omnilex&lt;/string&gt;
+  &lt;string&gt;Holy Shield&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="EquippedShieldIDOffset" Type="System.String" Scope="User">
+      <Value Profile="(Default)">6600</Value>
+    </Setting>
+    <Setting Name="NexusTiers" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;No&lt;/string&gt;
+  &lt;string&gt;Indistinct&lt;/string&gt;
+  &lt;string&gt;Faint&lt;/string&gt;
+  &lt;string&gt;Slight&lt;/string&gt;
+  &lt;string&gt;Modest&lt;/string&gt;
+  &lt;string&gt;Distinct&lt;/string&gt;
+  &lt;string&gt;Robust&lt;/string&gt;
+  &lt;string&gt;Vigorous&lt;/string&gt;
+  &lt;string&gt;Intense&lt;/string&gt;
+  &lt;string&gt;Extreme&lt;/string&gt;
+  &lt;string&gt;Bursting&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
