@@ -6,7 +6,7 @@ A simple program that allows you to view the progress of your Nexus weapon upgra
 
 
 More details:
-[insert link here]
+http://www.reddit.com/r/ffxiv/comments/2icpm4/tool_ffxiv_nexus_progress_the_better_tracker/
 
 
 
