@@ -9,8 +9,10 @@ Public Class Main
 
 
     Dim _memory As Memory = New Memory
-
-
+    Dim _recordingLight As Boolean
+    Dim _totalLightEarned(10) As Integer
+    Dim _lastID As Int32
+    Dim _jobPictures(10) As Image
 
 
 
@@ -27,6 +29,17 @@ Public Class Main
 
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        _jobPictures(0) = My.Resources.ResourceManager.GetObject("pld")
+        _jobPictures(9) = _jobPictures(0)
+        _jobPictures(1) = My.Resources.ResourceManager.GetObject("mnk")
+        _jobPictures(2) = My.Resources.ResourceManager.GetObject("war")
+        _jobPictures(3) = My.Resources.ResourceManager.GetObject("drg")
+        _jobPictures(4) = My.Resources.ResourceManager.GetObject("brd")
+        _jobPictures(5) = My.Resources.ResourceManager.GetObject("whm")
+        _jobPictures(6) = My.Resources.ResourceManager.GetObject("blm")
+        _jobPictures(7) = My.Resources.ResourceManager.GetObject("sch")
+        _jobPictures(8) = My.Resources.ResourceManager.GetObject("smn")
+
         refreshProcessComboBoxItems()
     End Sub
 
@@ -69,6 +82,7 @@ Public Class Main
     Private Sub comboProcesses_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles comboProcesses.SelectionChangeCommitted
         Me.grpLight.Visible = False
         Me.timerRefresh.Enabled = False
+        _recordingLight = False
 
         If IsNothing(Me.comboProcesses.SelectedItem) Then Return
 
@@ -78,8 +92,16 @@ Public Class Main
         Else
             _memory.CalculateAddresses()
 
+            ' refresh all initially
+            Dim ID = GetEquippedID()
+            _lastID = ID
+            RefreshJobPicture(ID)
+            RefreshAll(ID)
+            RecordLastLight(ID, 0) ' reset the 'last light' 
+
             Me.grpLight.Visible = True
             Me.timerRefresh.Enabled = True
+            _recordingLight = True
         End If
     End Sub
 
@@ -146,26 +168,101 @@ Public Class Main
         End Try
     End Sub
 
+
+
+    Dim gr As Graphics
+
     Private Sub timerRefresh_Tick(sender As Object, e As EventArgs) Handles timerRefresh.Tick
-        Dim ID = 0
-        If checkShield.Checked Then
-            ID = _memory.GetEquippedShieldID
-        Else
-            ID = _memory.GetEquippedWeaponID()
+        Dim ID = GetEquippedID()
+        If ID <> _lastID Then ' determine if we should record a potential light change
+            _recordingLight = False ' only if the equipped IDs didn't change
+            RecordLastLight(ID, 0)
+            RefreshJobPicture(ID)
         End If
+        _lastID = ID
+
+        RefreshAll(ID)
+
+        _recordingLight = True
+    End Sub
 
 
+
+
+
+    Private Function IsIDNovus(ByVal ID As Int32) As Boolean
+        Return ID >= My.Settings.NexusIDStart And ID <= My.Settings.NexusIDStart + My.Settings.NexusNames.Count
+    End Function
+
+    Private Function GetEquippedID() As Int32
+        If checkShield.Checked Then
+            Return _memory.GetEquippedShieldID
+        End If
+        Return _memory.GetEquippedWeaponID()
+    End Function
+
+
+
+
+
+    Private Sub RefreshAll(ByVal ID As Int32)
         ' check if the ID falls within the novus ID range
-        If ID >= My.Settings.NexusIDStart And ID <= My.Settings.NexusIDStart + My.Settings.NexusNames.Count Then
+        If IsIDNovus(ID) Then
+            Dim last_Light = Me.progressLight.Value
             Me.progressLight.Value = Math.Min(_memory.GetLightAmount(Not checkShield.Checked), 2000)
-            Me.lblProgress.Text = Me.progressLight.Value.ToString("N0") & " / 2,000" & vbCrLf & My.Settings.NexusNames(ID - My.Settings.NexusIDStart)
-            Me.grpLight.Text = "Light - " & My.Settings.NexusTiers(Math.Floor(progressLight.Value / 200)) & " Activity"
+
+            If last_Light < Me.progressLight.Value Then
+                RefreshLight(ID)
+
+                If _recordingLight Then
+                    RecordLastLight(ID, Me.progressLight.Value - last_Light)
+                End If
+            End If
         Else
             Me.progressLight.Value = 0
             Me.lblProgress.Text = "No Novus Equipped"
             Me.grpLight.Text = "Light"
+            Me.lblBrightsRemaining.Text = "Brights" & vbCrLf & "-"
+            Me.lblGentlesRemaining.Text = "Gentles" & vbCrLf & "-"
+            Me.lblTotalLightToday.Text = "Total" & vbCrLf & "-"
+            Me.lblLastLightEarned.Text = "-"
         End If
     End Sub
+
+    Private Sub RefreshJobPicture(ByVal ID As Int32)
+        If IsIDNovus(ID) Then
+            Me.pictureJob.Image = _jobPictures(ID - My.Settings.NexusIDStart)
+        Else
+            Me.pictureJob.Image = Nothing
+        End If
+    End Sub
+
+    Private Sub RefreshLight(ByVal ID As Int32)
+        Me.lblProgress.Text = Me.progressLight.Value.ToString("N0") & " / 2,000" & vbCrLf & My.Settings.NexusNames(ID - My.Settings.NexusIDStart)
+        Me.grpLight.Text = "Light - " & Math.Floor(progressLight.Value / progressLight.Maximum * 100) & "% - " & My.Settings.NexusTiers(Math.Floor(progressLight.Value / 200)) & " Activity"
+
+        Me.lblBrightsRemaining.Text = "Brights" & vbCrLf & Math.Ceiling((2000 - Me.progressLight.Value) / 4).ToString("N0")
+        Me.lblGentlesRemaining.Text = "Gentles" & vbCrLf & Math.Ceiling((2000 - Me.progressLight.Value) / 2).ToString("N0")
+    End Sub
+
+    Private Sub RecordLastLight(ByVal ID As Int32, ByVal light As Integer)
+        If light <= 0 Then
+            Me.lblLastLightEarned.Text = "-"
+        Else
+            Me.lblLastLightEarned.Text = "+" & light
+            _totalLightEarned(ID - My.Settings.NexusIDStart) += light
+        End If
+
+        If IsIDNovus(ID) Then
+            Me.lblTotalLightToday.Text = "Total" & vbCrLf & "+" & _totalLightEarned(ID - My.Settings.NexusIDStart)
+        Else
+            Me.lblTotalLightToday.Text = "Total" & vbCrLf & "-"
+        End If
+    End Sub
+
+
+
+
 
 
 

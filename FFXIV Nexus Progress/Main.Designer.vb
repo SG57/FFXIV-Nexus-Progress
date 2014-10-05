@@ -31,18 +31,23 @@ Partial Class Main
         Me.LightInfoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BonusLightToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ToolTip2 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.lblLastLightEarned = New System.Windows.Forms.Label()
+        Me.lblBrightsRemaining = New System.Windows.Forms.Label()
+        Me.lblGentlesRemaining = New System.Windows.Forms.Label()
+        Me.lblTotalLightToday = New System.Windows.Forms.Label()
         Me.timerRefresh = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.comboProcesses = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.grpLight = New System.Windows.Forms.GroupBox()
+        Me.pictureJob = New System.Windows.Forms.PictureBox()
         Me.checkShield = New System.Windows.Forms.CheckBox()
         Me.lblProgress = New System.Windows.Forms.Label()
         Me.progressLight = New System.Windows.Forms.ProgressBar()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.grpLight.SuspendLayout()
+        CType(Me.pictureJob, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -96,15 +101,67 @@ Partial Class Main
         Me.ToolTip1.InitialDelay = 1000
         Me.ToolTip1.ReshowDelay = 100
         Me.ToolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.ToolTip1.ToolTipTitle = "Field of View"
+        Me.ToolTip1.ToolTipTitle = "Nexus Light"
         '
-        'ToolTip2
+        'lblLastLightEarned
         '
-        Me.ToolTip2.AutoPopDelay = 0
-        Me.ToolTip2.InitialDelay = 1000
-        Me.ToolTip2.ReshowDelay = 100
-        Me.ToolTip2.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
-        Me.ToolTip2.ToolTipTitle = "Zoom Max"
+        Me.lblLastLightEarned.BackColor = System.Drawing.Color.Transparent
+        Me.lblLastLightEarned.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblLastLightEarned.Font = New System.Drawing.Font("Neo Sans", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLastLightEarned.ForeColor = System.Drawing.Color.Green
+        Me.lblLastLightEarned.Location = New System.Drawing.Point(266, 37)
+        Me.lblLastLightEarned.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblLastLightEarned.Name = "lblLastLightEarned"
+        Me.lblLastLightEarned.Size = New System.Drawing.Size(41, 32)
+        Me.lblLastLightEarned.TabIndex = 32
+        Me.lblLastLightEarned.Text = "-"
+        Me.lblLastLightEarned.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ToolTip1.SetToolTip(Me.lblLastLightEarned, "Last amount of light you earned")
+        '
+        'lblBrightsRemaining
+        '
+        Me.lblBrightsRemaining.BackColor = System.Drawing.Color.Transparent
+        Me.lblBrightsRemaining.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblBrightsRemaining.Font = New System.Drawing.Font("Neo Sans", 9.749999!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.lblBrightsRemaining.ForeColor = System.Drawing.Color.Gold
+        Me.lblBrightsRemaining.Location = New System.Drawing.Point(26, 75)
+        Me.lblBrightsRemaining.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblBrightsRemaining.Name = "lblBrightsRemaining"
+        Me.lblBrightsRemaining.Size = New System.Drawing.Size(68, 36)
+        Me.lblBrightsRemaining.TabIndex = 33
+        Me.lblBrightsRemaining.Text = "-"
+        Me.lblBrightsRemaining.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ToolTip1.SetToolTip(Me.lblBrightsRemaining, "How many Bright Lights are remaining in order to finish your Nexus")
+        '
+        'lblGentlesRemaining
+        '
+        Me.lblGentlesRemaining.BackColor = System.Drawing.Color.Transparent
+        Me.lblGentlesRemaining.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblGentlesRemaining.Font = New System.Drawing.Font("Neo Sans", 9.749999!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle))
+        Me.lblGentlesRemaining.ForeColor = System.Drawing.Color.Olive
+        Me.lblGentlesRemaining.Location = New System.Drawing.Point(102, 75)
+        Me.lblGentlesRemaining.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblGentlesRemaining.Name = "lblGentlesRemaining"
+        Me.lblGentlesRemaining.Size = New System.Drawing.Size(68, 36)
+        Me.lblGentlesRemaining.TabIndex = 34
+        Me.lblGentlesRemaining.Text = "-"
+        Me.lblGentlesRemaining.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ToolTip1.SetToolTip(Me.lblGentlesRemaining, "How many Gentle Lights are remaining in order to finish your Nexus")
+        '
+        'lblTotalLightToday
+        '
+        Me.lblTotalLightToday.BackColor = System.Drawing.Color.Transparent
+        Me.lblTotalLightToday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblTotalLightToday.Font = New System.Drawing.Font("Neo Sans", 9.749999!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotalLightToday.ForeColor = System.Drawing.Color.Green
+        Me.lblTotalLightToday.Location = New System.Drawing.Point(245, 75)
+        Me.lblTotalLightToday.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblTotalLightToday.Name = "lblTotalLightToday"
+        Me.lblTotalLightToday.Size = New System.Drawing.Size(62, 36)
+        Me.lblTotalLightToday.TabIndex = 35
+        Me.lblTotalLightToday.Text = "-"
+        Me.lblTotalLightToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ToolTip1.SetToolTip(Me.lblTotalLightToday, "Total Light you've accumulated since you have been running this application.")
         '
         'timerRefresh
         '
@@ -120,7 +177,7 @@ Partial Class Main
         Me.GroupBox1.Font = New System.Drawing.Font("Monotype Corsiva", 18.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(39, 20)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(360, 248)
+        Me.GroupBox1.Size = New System.Drawing.Size(360, 280)
         Me.GroupBox1.TabIndex = 25
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Process"
@@ -153,27 +210,43 @@ Partial Class Main
         '
         'grpLight
         '
+        Me.grpLight.Controls.Add(Me.pictureJob)
+        Me.grpLight.Controls.Add(Me.lblTotalLightToday)
+        Me.grpLight.Controls.Add(Me.lblGentlesRemaining)
+        Me.grpLight.Controls.Add(Me.lblBrightsRemaining)
+        Me.grpLight.Controls.Add(Me.lblLastLightEarned)
         Me.grpLight.Controls.Add(Me.checkShield)
         Me.grpLight.Controls.Add(Me.lblProgress)
         Me.grpLight.Controls.Add(Me.progressLight)
         Me.grpLight.Font = New System.Drawing.Font("Monotype Corsiva", 18.0!, System.Drawing.FontStyle.Italic)
         Me.grpLight.Location = New System.Drawing.Point(57, 89)
         Me.grpLight.Name = "grpLight"
-        Me.grpLight.Size = New System.Drawing.Size(324, 169)
+        Me.grpLight.Size = New System.Drawing.Size(324, 204)
         Me.grpLight.TabIndex = 32
         Me.grpLight.TabStop = False
         Me.grpLight.Text = "Light"
         '
+        'pictureJob
+        '
+        Me.pictureJob.Location = New System.Drawing.Point(26, 119)
+        Me.pictureJob.Name = "pictureJob"
+        Me.pictureJob.Padding = New System.Windows.Forms.Padding(10)
+        Me.pictureJob.Size = New System.Drawing.Size(68, 60)
+        Me.pictureJob.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pictureJob.TabIndex = 36
+        Me.pictureJob.TabStop = False
+        '
         'checkShield
         '
         Me.checkShield.AutoSize = True
+        Me.checkShield.BackColor = System.Drawing.Color.Transparent
         Me.checkShield.Font = New System.Drawing.Font("Monotype Corsiva", 12.0!, System.Drawing.FontStyle.Italic)
-        Me.checkShield.Location = New System.Drawing.Point(258, 145)
+        Me.checkShield.Location = New System.Drawing.Point(258, 182)
         Me.checkShield.Name = "checkShield"
         Me.checkShield.Size = New System.Drawing.Size(63, 22)
         Me.checkShield.TabIndex = 31
         Me.checkShield.Text = "Shield"
-        Me.checkShield.UseVisualStyleBackColor = True
+        Me.checkShield.UseVisualStyleBackColor = False
         '
         'lblProgress
         '
@@ -181,10 +254,10 @@ Partial Class Main
         Me.lblProgress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblProgress.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.0!, System.Drawing.FontStyle.Bold)
         Me.lblProgress.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.lblProgress.Location = New System.Drawing.Point(26, 72)
+        Me.lblProgress.Location = New System.Drawing.Point(102, 119)
         Me.lblProgress.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblProgress.Name = "lblProgress"
-        Me.lblProgress.Size = New System.Drawing.Size(281, 70)
+        Me.lblProgress.Size = New System.Drawing.Size(205, 60)
         Me.lblProgress.TabIndex = 30
         Me.lblProgress.Text = "..."
         Me.lblProgress.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -194,7 +267,7 @@ Partial Class Main
         Me.progressLight.Location = New System.Drawing.Point(26, 37)
         Me.progressLight.Maximum = 2000
         Me.progressLight.Name = "progressLight"
-        Me.progressLight.Size = New System.Drawing.Size(281, 23)
+        Me.progressLight.Size = New System.Drawing.Size(233, 32)
         Me.progressLight.TabIndex = 27
         '
         'Main
@@ -203,7 +276,7 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ClientSize = New System.Drawing.Size(438, 276)
+        Me.ClientSize = New System.Drawing.Size(438, 309)
         Me.Controls.Add(Me.grpLight)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip1)
@@ -221,6 +294,7 @@ Partial Class Main
         Me.GroupBox1.PerformLayout()
         Me.grpLight.ResumeLayout(False)
         Me.grpLight.PerformLayout()
+        CType(Me.pictureJob, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -229,7 +303,6 @@ Partial Class Main
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DonateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
-    Friend WithEvents ToolTip2 As System.Windows.Forms.ToolTip
     Friend WithEvents CheckForUpdateToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LightInfoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents timerRefresh As System.Windows.Forms.Timer
@@ -241,5 +314,10 @@ Partial Class Main
     Friend WithEvents lblProgress As System.Windows.Forms.Label
     Friend WithEvents progressLight As System.Windows.Forms.ProgressBar
     Friend WithEvents checkShield As System.Windows.Forms.CheckBox
+    Friend WithEvents lblTotalLightToday As System.Windows.Forms.Label
+    Friend WithEvents lblGentlesRemaining As System.Windows.Forms.Label
+    Friend WithEvents lblBrightsRemaining As System.Windows.Forms.Label
+    Friend WithEvents lblLastLightEarned As System.Windows.Forms.Label
+    Friend WithEvents pictureJob As System.Windows.Forms.PictureBox
 
 End Class

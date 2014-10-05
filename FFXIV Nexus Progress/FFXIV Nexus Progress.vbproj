@@ -122,6 +122,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PerfCenterCpl.ico" />
+    <None Include="Resources\brd.png" />
+    <None Include="Resources\whm.png" />
+    <None Include="Resources\sch.png" />
+    <None Include="Resources\war.png" />
+    <None Include="Resources\pld.png" />
+    <None Include="Resources\drg.png" />
+    <None Include="Resources\smn.png" />
+    <None Include="Resources\mnk.png" />
+    <None Include="Resources\blm.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
