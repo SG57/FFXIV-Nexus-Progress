@@ -40,10 +40,11 @@ Partial Class Main
         Me.comboProcesses = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.grpLight = New System.Windows.Forms.GroupBox()
-        Me.pictureJob = New System.Windows.Forms.PictureBox()
         Me.checkShield = New System.Windows.Forms.CheckBox()
         Me.lblProgress = New System.Windows.Forms.Label()
         Me.progressLight = New System.Windows.Forms.ProgressBar()
+        Me.pictureJob = New System.Windows.Forms.PictureBox()
+        Me.lblLightPerHour = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.grpLight.SuspendLayout()
@@ -153,7 +154,7 @@ Partial Class Main
         Me.lblTotalLightToday.BackColor = System.Drawing.Color.Transparent
         Me.lblTotalLightToday.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblTotalLightToday.Font = New System.Drawing.Font("Neo Sans", 9.749999!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotalLightToday.ForeColor = System.Drawing.Color.Green
+        Me.lblTotalLightToday.ForeColor = System.Drawing.Color.ForestGreen
         Me.lblTotalLightToday.Location = New System.Drawing.Point(245, 75)
         Me.lblTotalLightToday.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblTotalLightToday.Name = "lblTotalLightToday"
@@ -210,6 +211,7 @@ Partial Class Main
         '
         'grpLight
         '
+        Me.grpLight.Controls.Add(Me.lblLightPerHour)
         Me.grpLight.Controls.Add(Me.pictureJob)
         Me.grpLight.Controls.Add(Me.lblTotalLightToday)
         Me.grpLight.Controls.Add(Me.lblGentlesRemaining)
@@ -225,16 +227,6 @@ Partial Class Main
         Me.grpLight.TabIndex = 32
         Me.grpLight.TabStop = False
         Me.grpLight.Text = "Light"
-        '
-        'pictureJob
-        '
-        Me.pictureJob.Location = New System.Drawing.Point(26, 119)
-        Me.pictureJob.Name = "pictureJob"
-        Me.pictureJob.Padding = New System.Windows.Forms.Padding(10)
-        Me.pictureJob.Size = New System.Drawing.Size(68, 60)
-        Me.pictureJob.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pictureJob.TabIndex = 36
-        Me.pictureJob.TabStop = False
         '
         'checkShield
         '
@@ -269,6 +261,31 @@ Partial Class Main
         Me.progressLight.Name = "progressLight"
         Me.progressLight.Size = New System.Drawing.Size(233, 32)
         Me.progressLight.TabIndex = 27
+        '
+        'pictureJob
+        '
+        Me.pictureJob.Location = New System.Drawing.Point(26, 119)
+        Me.pictureJob.Name = "pictureJob"
+        Me.pictureJob.Padding = New System.Windows.Forms.Padding(10)
+        Me.pictureJob.Size = New System.Drawing.Size(68, 60)
+        Me.pictureJob.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pictureJob.TabIndex = 36
+        Me.pictureJob.TabStop = False
+        '
+        'lblLightPerHour
+        '
+        Me.lblLightPerHour.BackColor = System.Drawing.Color.Transparent
+        Me.lblLightPerHour.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblLightPerHour.Font = New System.Drawing.Font("Neo Sans", 9.749999!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLightPerHour.ForeColor = System.Drawing.Color.PaleGreen
+        Me.lblLightPerHour.Location = New System.Drawing.Point(178, 75)
+        Me.lblLightPerHour.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblLightPerHour.Name = "lblLightPerHour"
+        Me.lblLightPerHour.Size = New System.Drawing.Size(62, 36)
+        Me.lblLightPerHour.TabIndex = 37
+        Me.lblLightPerHour.Text = "-"
+        Me.lblLightPerHour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ToolTip1.SetToolTip(Me.lblLightPerHour, "The amount of Light Per Hour you are accumulating since you ran this program.")
         '
         'Main
         '
@@ -319,5 +336,6 @@ Partial Class Main
     Friend WithEvents lblBrightsRemaining As System.Windows.Forms.Label
     Friend WithEvents lblLastLightEarned As System.Windows.Forms.Label
     Friend WithEvents pictureJob As System.Windows.Forms.PictureBox
+    Friend WithEvents lblLightPerHour As System.Windows.Forms.Label
 
 End Class

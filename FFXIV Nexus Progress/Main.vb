@@ -11,6 +11,7 @@ Public Class Main
     Dim _memory As Memory = New Memory
     Dim _recordingLight As Boolean
     Dim _totalLightEarned(10) As Integer
+    Dim _timeElapsed As Long = 1
     Dim _lastID As Int32
     Dim _jobPictures(10) As Image
 
@@ -173,6 +174,8 @@ Public Class Main
     Dim gr As Graphics
 
     Private Sub timerRefresh_Tick(sender As Object, e As EventArgs) Handles timerRefresh.Tick
+        _timeElapsed += Me.timerRefresh.Interval
+
         Dim ID = GetEquippedID()
         If ID <> _lastID Then ' determine if we should record a potential light change
             _recordingLight = False ' only if the equipped IDs didn't change
@@ -203,8 +206,6 @@ Public Class Main
 
 
 
-
-
     Private Sub RefreshAll(ByVal ID As Int32)
         ' check if the ID falls within the novus ID range
         If IsIDNovus(ID) Then
@@ -218,6 +219,9 @@ Public Class Main
                     RecordLastLight(ID, Me.progressLight.Value - last_Light)
                 End If
             End If
+
+            Me.lblLightPerHour.Text = "LPH" & vbCrLf & FormatNumber(_totalLightEarned(ID - My.Settings.NexusIDStart) / _timeElapsed * (1000 * 60 * 60), 1)
+
         Else
             Me.progressLight.Value = 0
             Me.lblProgress.Text = "No Novus Equipped"
@@ -226,6 +230,7 @@ Public Class Main
             Me.lblGentlesRemaining.Text = "Gentles" & vbCrLf & "-"
             Me.lblTotalLightToday.Text = "Total" & vbCrLf & "-"
             Me.lblLastLightEarned.Text = "-"
+            Me.lblLightPerHour.Text = "LPH" & vbCrLf & "-"
         End If
     End Sub
 
@@ -241,20 +246,23 @@ Public Class Main
         Me.lblProgress.Text = Me.progressLight.Value.ToString("N0") & " / 2,000" & vbCrLf & My.Settings.NexusNames(ID - My.Settings.NexusIDStart)
         Me.grpLight.Text = "Light - " & Math.Floor(progressLight.Value / progressLight.Maximum * 100) & "% - " & My.Settings.NexusTiers(Math.Floor(progressLight.Value / 200)) & " Activity"
 
-        Me.lblBrightsRemaining.Text = "Brights" & vbCrLf & Math.Ceiling((2000 - Me.progressLight.Value) / 4).ToString("N0")
-        Me.lblGentlesRemaining.Text = "Gentles" & vbCrLf & Math.Ceiling((2000 - Me.progressLight.Value) / 2).ToString("N0")
+        Me.lblBrightsRemaining.Text = "Brights" & vbCrLf & "-" & Math.Ceiling((2000 - Me.progressLight.Value) / 4).ToString("N0")
+        Me.lblGentlesRemaining.Text = "Gentles" & vbCrLf & "-" & Math.Ceiling((2000 - Me.progressLight.Value) / 2).ToString("N0")
     End Sub
 
     Private Sub RecordLastLight(ByVal ID As Int32, ByVal light As Integer)
+        Dim novus_index = ID - My.Settings.NexusIDStart
+
         If light <= 0 Then
             Me.lblLastLightEarned.Text = "-"
+            Me.lblLightPerHour.Text = "LPH" & vbCrLf & "-"
         Else
             Me.lblLastLightEarned.Text = "+" & light
-            _totalLightEarned(ID - My.Settings.NexusIDStart) += light
+            _totalLightEarned(novus_index) += light
         End If
 
         If IsIDNovus(ID) Then
-            Me.lblTotalLightToday.Text = "Total" & vbCrLf & "+" & _totalLightEarned(ID - My.Settings.NexusIDStart)
+            Me.lblTotalLightToday.Text = "Total" & vbCrLf & "+" & _totalLightEarned(novus_index)
         Else
             Me.lblTotalLightToday.Text = "Total" & vbCrLf & "-"
         End If
