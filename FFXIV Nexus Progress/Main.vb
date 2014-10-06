@@ -38,8 +38,8 @@ Public Class Main
         _jobPictures(4) = My.Resources.ResourceManager.GetObject("brd")
         _jobPictures(5) = My.Resources.ResourceManager.GetObject("whm")
         _jobPictures(6) = My.Resources.ResourceManager.GetObject("blm")
-        _jobPictures(7) = My.Resources.ResourceManager.GetObject("sch")
-        _jobPictures(8) = My.Resources.ResourceManager.GetObject("smn")
+        _jobPictures(7) = My.Resources.ResourceManager.GetObject("smn")
+        _jobPictures(8) = My.Resources.ResourceManager.GetObject("sch")
 
         refreshProcessComboBoxItems()
     End Sub
