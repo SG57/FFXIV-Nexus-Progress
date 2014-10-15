@@ -118,7 +118,8 @@ Partial Class Main
         Me.lblLastLightEarned.TabIndex = 32
         Me.lblLastLightEarned.Text = "-"
         Me.lblLastLightEarned.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ToolTip1.SetToolTip(Me.lblLastLightEarned, "Last amount of light you earned")
+        Me.ToolTip1.SetToolTip(Me.lblLastLightEarned, "Last amount of light you earned." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "**Double-click here to reset the total light " & _
+        "& timer for all Novuses.**")
         '
         'lblBrightsRemaining
         '
@@ -163,7 +164,7 @@ Partial Class Main
         Me.lblTotalLightToday.TabIndex = 35
         Me.lblTotalLightToday.Text = "-"
         Me.lblTotalLightToday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ToolTip1.SetToolTip(Me.lblTotalLightToday, "Total Light you've accumulated since you have been running this application.")
+        Me.ToolTip1.SetToolTip(Me.lblTotalLightToday, "Total Light you've accumulated for this Novus since the start of this program." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "**Double-click here to reset the total light & timer for all Novuses.**")
         '
         'lblLightPerHour
         '
@@ -178,7 +179,9 @@ Partial Class Main
         Me.lblLightPerHour.TabIndex = 37
         Me.lblLightPerHour.Text = "-"
         Me.lblLightPerHour.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.ToolTip1.SetToolTip(Me.lblLightPerHour, "The amount of Light Per Hour you are accumulating since you ran this program.")
+        Me.ToolTip1.SetToolTip(Me.lblLightPerHour, "The amount of Lights Per Hour you are accumulating for this Novus since the timer" & _
+        " reset (or the program started)." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "**Double-click here to reset the total light" & _
+        " & timer for all Novuses.**")
         '
         'timerRefresh
         '

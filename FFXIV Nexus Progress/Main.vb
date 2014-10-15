@@ -14,11 +14,12 @@ Public Class Main
     Dim _timeElapsed As Long = 1
     Dim _lastID As Int32
     Dim _jobPictures(10) As Image
+    Dim _oldSelectedProcess As Object
 
 
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
-        MsgBox("A simple program that allows you to view the progress of your Nexus weapon upgrade in FFXIV." & vbCrLf & vbCrLf & "Try updating the memory addresses if it stops working, and let me know if they DO need updating." & vbCrLf & vbCrLf & vbCrLf & "Copyright ©  2014" & vbCrLf & "Cord Rehn <jordansg57@gmail.com>", MsgBoxStyle.Information, "About FFXIV Nexus Progress")
+        MsgBox("A simple program that allows you to view the progress of your Nexus weapon upgrade in FFXIV." & vbCrLf & vbCrLf & "Try updating the memory addresses if it stops working, and let me know if they DO need updating." & vbCrLf & vbCrLf & vbCrLf & "NOTE: Currently, memory addresses are only valid for the 1st character log-in for that client. You need to restart your whole client to use this after you log out even once!" & vbCrLf & vbCrLf & vbCrLf & "Copyright ©  2014" & vbCrLf & "Cord Rehn <jordansg57@gmail.com>", MsgBoxStyle.Information, "About FFXIV Nexus Progress")
     End Sub
 
     Private Sub DonateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DonateToolStripMenuItem.Click
@@ -28,6 +29,9 @@ Public Class Main
 
 
 
+    Public Function GetMemory() As Memory
+        Return _memory
+    End Function
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _jobPictures(0) = My.Resources.ResourceManager.GetObject("pld")
@@ -60,13 +64,14 @@ Public Class Main
         If Not IsNothing(old_selected_item) Then
             If Me.comboProcesses.Items.Contains(old_selected_item) Then
                 Me.comboProcesses.SelectedItem = old_selected_item
+                Exit Sub
             End If
+        End If
+
+        If ffxiv_processes.Length > 0 Then
+            Me.comboProcesses.SelectedIndex = 0
         Else
-            If ffxiv_processes.Length > 0 Then
-                Me.comboProcesses.SelectedIndex = 0
-            Else
-                Me.comboProcesses.SelectedItem = Nothing
-            End If
+            Me.comboProcesses.SelectedItem = Nothing
         End If
 
         comboProcesses_SelectionChangeCommitted(Nothing, Nothing)
@@ -81,6 +86,9 @@ Public Class Main
     End Sub
 
     Private Sub comboProcesses_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles comboProcesses.SelectionChangeCommitted
+        If Not IsNothing(_oldSelectedProcess) Then If _oldSelectedProcess.Equals(Me.comboProcesses.SelectedItem) Then Exit Sub
+
+        _oldSelectedProcess = comboProcesses.SelectedItem
         Me.grpLight.Visible = False
         Me.timerRefresh.Enabled = False
         _recordingLight = False
@@ -91,7 +99,7 @@ Public Class Main
             MsgBox("Failed to attach to FFXIV process ID: " & Me.comboProcesses.SelectedItem, MsgBoxStyle.Critical, "Process Error")
             Me.comboProcesses.SelectedItem = Nothing
         Else
-            _memory.CalculateAddresses()
+            _memory.CalculateAddresses(My.Settings.InventoryAddress, My.Settings.EquippedWeaponIDOffset, My.Settings.EquippedShieldIDOffset)
 
             ' refresh all initially
             Dim ID = GetEquippedID()
@@ -154,10 +162,10 @@ Public Class Main
             My.Settings.Save()
 
             ' recalc addresses using the newly updated ones stored in settings
-            _memory.CalculateAddresses()
+            _memory.CalculateAddresses(My.Settings.InventoryAddress, My.Settings.EquippedWeaponIDOffset, My.Settings.EquippedShieldIDOffset)
             
 
-            MsgBox("Successfully updated to the memory addresses that were working as of: " & vbCrLf & vbCrLf & working_date, MsgBoxStyle.Information, "Updated Memory Addresses")
+            MsgBox("Successfully updated to the memory addresses that were working as of: " & vbCrLf & vbCrLf & working_date & vbCrLf & vbCrLf & "NOTE: These are only valid for the first character log-in!", MsgBoxStyle.Information, "Updated Memory Addresses")
 
 
         Catch ex As WebException
@@ -255,7 +263,6 @@ Public Class Main
 
         If light <= 0 Then
             Me.lblLastLightEarned.Text = "-"
-            Me.lblLightPerHour.Text = "LPH" & vbCrLf & "-"
         Else
             Me.lblLastLightEarned.Text = "+" & light
             _totalLightEarned(novus_index) += light
@@ -284,5 +291,31 @@ Public Class Main
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         MsgBox("Hey! In the spirit of information for everyone, I'm just sharing (not so publicly) something I stumbled upon myself." & vbCrLf & vbCrLf & "You can stupidly easily instantly, temporarily max your light then grab your nexus without farming a single light at all.  It works, but it's obviously an exploit and is far more out-reaching and powerful than I care to share." & vbCrLf & vbCrLf & "The more you know!", MsgBoxStyle.OkOnly, "Fun Fact")
+    End Sub
+
+
+
+
+    Private Sub lblLightPerHour_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lblLightPerHour.MouseDoubleClick
+        ResetLight()
+    End Sub
+
+    Private Sub lblTotalLightToday_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lblTotalLightToday.MouseDoubleClick
+        ResetLight()
+    End Sub
+
+    Private Sub lblLastLightEarned_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lblLastLightEarned.MouseDoubleClick
+        ResetLight()
+    End Sub
+
+    Private Sub ResetLight()
+        _timeElapsed = 0
+
+        For i = 0 To _totalLightEarned.Count - 1
+            _totalLightEarned(i) = 0
+        Next
+        RecordLastLight(GetEquippedID, 0)
+
+        MsgBox("Reset the total Light earned, last light earned & Light-Per-Hour Timer for all Novuses!", MsgBoxStyle.Information, "LPH Timer Reset")
     End Sub
 End Class

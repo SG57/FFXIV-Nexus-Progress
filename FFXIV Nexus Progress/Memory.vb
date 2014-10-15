@@ -3,10 +3,10 @@
     Private EquippedWeaponIDAddress As Int32
     Private EquippedShieldIDAddress As Int32
 
-    Public Sub CalculateAddresses()
+    Public Sub CalculateAddresses(ByVal inventory_address() As Int32, ByVal weapon_id_offset As Int32, ByVal shield_id_offset As Int32)
         If IsAttached() Then
-            EquippedWeaponIDAddress = CalculateAddress(My.Settings.InventoryAddress, My.Settings.EquippedWeaponIDOffset)
-            EquippedShieldIDAddress = CalculateAddress(My.Settings.InventoryAddress, My.Settings.EquippedShieldIDOffset)
+            EquippedWeaponIDAddress = CalculateAddress(inventory_address, weapon_id_offset)
+            EquippedShieldIDAddress = CalculateAddress(inventory_address, shield_id_offset)
         End If
     End Sub
 
@@ -25,11 +25,54 @@
 
 
 
+
+    Delegate Sub UpdateRunner(ByVal percent As Integer)
+
+    Public Function ScanForExactInt32Value(ByVal exact_value As Int32, ByVal percent_update As UpdateRunner) As Int32()
+        Dim return_addrs As New ArrayList
+        Dim update_count As Integer = 0
+
+        Dim addr_value As Integer
+        Dim curr_chunk As Int32 = ffxiv_proc.MainModule.BaseAddress
+        Dim end_addr As Int32 = ffxiv_proc.MainModule.BaseAddress + ffxiv_proc.PrivateMemorySize64
+        Dim event_update_freq As Decimal = (end_addr - curr_chunk) / 4.0F / 100.0F
+        Dim percent As Integer = 0
+        Dim _dataBytes(65536) As Byte
+
+        While curr_chunk < end_addr
+            ReadProcessMemory(ffxiv_proc_hdl, curr_chunk, _dataBytes, 65536, vbNull)
+
+            For i = 0 To _dataBytes.Count - 4 Step 4
+                update_count += 1
+                If (update_count >= event_update_freq) Then
+                    update_count = 0
+                    percent += 1
+                    percent_update.Invoke(percent)
+                    Application.DoEvents()
+                End If
+
+                addr_value = BitConverter.ToInt32(_dataBytes, i)
+
+                If addr_value.Equals(exact_value) Then
+                    return_addrs.Add(curr_chunk + i)
+                End If
+            Next
+
+            curr_chunk += 65536
+        End While
+
+        percent_update.Invoke(100)
+
+        Return return_addrs.ToArray(GetType(Int32))
+    End Function
+
     Private Function CalculateAddress(ByVal addr_ptrs() As Int32, ByVal final_offset As Int32) As Int32
         Dim addr As Int32 = ffxiv_proc.MainModule.BaseAddress
-        For Each offset In addr_ptrs
-            addr = Deref(addr, offset)
-        Next
+        If Not IsNothing(addr_ptrs) Then
+            For Each offset In addr_ptrs
+                addr = Deref(addr, offset)
+            Next
+        End If
         Return addr + final_offset
     End Function
 
@@ -52,7 +95,7 @@
             If Not IsNothing(ffxiv_proc) Then
                 ffxiv_proc_hdl = OpenProcess(PROCESS_READ_QUERY, False, ffxiv_proc.Id)
 
-                CalculateAddresses()
+                CalculateAddresses(My.Settings.InventoryAddress, My.Settings.EquippedWeaponIDOffset, My.Settings.EquippedShieldIDOffset)
             End If
         Catch ex As Exception
             Debug.Print(ex.StackTrace & vbCrLf)
