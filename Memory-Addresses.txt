@@ -1,10 +1,10 @@
-WorkingDate = 10/5/2014
+WorkingDate = 10/30/2014
 
 
-InventoryAddress = 0x100AB80, 0x0
+InventoryAddress = 0x103B320, 0x0, 0x30
 
-EquippedWeaponIDOffset = 0x1988
+EquippedWeaponIDOffset = 0x1958
 
-EquippedShieldIDOffset = 0x19c8
+EquippedShieldIDOffset = 0x1998
 
 SpiritBondOffset = 0x8
