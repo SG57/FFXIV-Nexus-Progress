@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PerfCenterCpl.ico" />
+    <None Include="Resources\nin.png" />
     <None Include="Resources\brd.png" />
     <None Include="Resources\whm.png" />
     <None Include="Resources\sch.png" />

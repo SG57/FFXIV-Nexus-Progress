@@ -130,6 +130,9 @@
   <data name="mnk" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mnk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="nin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\nin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="pld" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pld.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
