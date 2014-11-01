@@ -10,10 +10,10 @@ Public Class Main
 
     Dim _memory As Memory = New Memory
     Dim _recordingLight As Boolean
-    Dim _totalLightEarned(10) As Integer
+    Dim _totalLightEarned(11) As Integer
     Dim _timeElapsed As Long = 1
     Dim _lastID As Int32
-    Dim _jobPictures(10) As Image
+    Dim _jobPictures(11) As Image
     Dim _oldSelectedProcess As Object
 
 
@@ -44,6 +44,7 @@ Public Class Main
         _jobPictures(6) = My.Resources.ResourceManager.GetObject("blm")
         _jobPictures(7) = My.Resources.ResourceManager.GetObject("smn")
         _jobPictures(8) = My.Resources.ResourceManager.GetObject("sch")
+        _jobPictures(10) = My.Resources.ResourceManager.GetObject("nin")
 
         refreshProcessComboBoxItems()
     End Sub
@@ -203,7 +204,8 @@ Public Class Main
 
 
     Private Function IsIDNovus(ByVal ID As Int32) As Boolean
-        Return ID >= My.Settings.NexusIDStart And ID <= My.Settings.NexusIDStart + My.Settings.NexusNames.Count
+        If ID = My.Settings.NinjaID Then Return True
+        Return ID >= My.Settings.NexusIDStart And ID <= My.Settings.NexusIDStart + 10
     End Function
 
     Private Function GetEquippedID() As Int32
@@ -211,6 +213,11 @@ Public Class Main
             Return _memory.GetEquippedShieldID
         End If
         Return _memory.GetEquippedWeaponID()
+    End Function
+
+    Private Function GetIndexForID(ByVal id As Int32) As Integer
+        If id = My.Settings.NinjaID Then Return 10
+        Return id - My.Settings.NexusIDStart
     End Function
 
 
@@ -229,7 +236,7 @@ Public Class Main
                 End If
             End If
 
-            Me.lblLightPerHour.Text = "LPH" & vbCrLf & FormatNumber(_totalLightEarned(ID - My.Settings.NexusIDStart) / _timeElapsed * (1000 * 60 * 60), 1)
+            Me.lblLightPerHour.Text = "LPH" & vbCrLf & FormatNumber(_totalLightEarned(GetIndexForID(ID)) / _timeElapsed * (1000 * 60 * 60), 1)
 
         Else
             Me.progressLight.Value = 0
@@ -245,14 +252,14 @@ Public Class Main
 
     Private Sub RefreshJobPicture(ByVal ID As Int32)
         If IsIDNovus(ID) Then
-            Me.pictureJob.Image = _jobPictures(ID - My.Settings.NexusIDStart)
+            Me.pictureJob.Image = _jobPictures(GetIndexForID(ID))
         Else
             Me.pictureJob.Image = Nothing
         End If
     End Sub
 
     Private Sub RefreshLight(ByVal ID As Int32)
-        Me.lblProgress.Text = Me.progressLight.Value.ToString("N0") & " / 2,000" & vbCrLf & My.Settings.NexusNames(ID - My.Settings.NexusIDStart)
+        Me.lblProgress.Text = Me.progressLight.Value.ToString("N0") & " / 2,000" & vbCrLf & My.Settings.NexusNames(GetIndexForID(ID))
         Me.grpLight.Text = "Light - " & Math.Floor(progressLight.Value / progressLight.Maximum * 100) & "% - " & My.Settings.NexusTiers(Math.Floor(progressLight.Value / 200)) & " Activity"
 
         Me.lblBrightsRemaining.Text = "Brights" & vbCrLf & "-" & Math.Ceiling((2000 - Me.progressLight.Value) / 4).ToString("N0")
@@ -260,7 +267,7 @@ Public Class Main
     End Sub
 
     Private Sub RecordLastLight(ByVal ID As Int32, ByVal light As Integer)
-        Dim novus_index = ID - My.Settings.NexusIDStart
+        Dim novus_index = GetIndexForID(ID)
 
         If light <= 0 Then
             Me.lblLastLightEarned.Text = "-"

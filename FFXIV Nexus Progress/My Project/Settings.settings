@@ -8,7 +8,7 @@
     <Setting Name="InventoryAddress" Type="System.Int32[]" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfInt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;int&gt;16821120&lt;/int&gt;
+  &lt;int&gt;17019680&lt;/int&gt;
   &lt;int&gt;0&lt;/int&gt;
 &lt;/ArrayOfInt&gt;</Value>
     </Setting>
@@ -31,6 +31,7 @@
   &lt;string&gt;Veil Of Wiyu&lt;/string&gt;
   &lt;string&gt;Omnilex&lt;/string&gt;
   &lt;string&gt;Holy Shield&lt;/string&gt;
+  &lt;string&gt;Yoshimitsu&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="EquippedShieldIDOffset" Type="System.String" Scope="User">
@@ -51,6 +52,9 @@
   &lt;string&gt;Extreme&lt;/string&gt;
   &lt;string&gt;Bursting&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="NinjaID" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9253</Value>
     </Setting>
   </Settings>
 </SettingsFile>
