@@ -45,7 +45,6 @@ Partial Class Main
         Me.checkShield = New System.Windows.Forms.CheckBox()
         Me.lblProgress = New System.Windows.Forms.Label()
         Me.progressLight = New System.Windows.Forms.ProgressBar()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.grpLight.SuspendLayout()
@@ -291,21 +290,6 @@ Partial Class Main
         Me.progressLight.Size = New System.Drawing.Size(233, 32)
         Me.progressLight.TabIndex = 27
         '
-        'Button1
-        '
-        Me.Button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ForeColor = System.Drawing.SystemColors.AppWorkspace
-        Me.Button1.Location = New System.Drawing.Point(405, 276)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(29, 17)
-        Me.Button1.TabIndex = 33
-        Me.Button1.Text = "?"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -313,7 +297,6 @@ Partial Class Main
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(438, 309)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.grpLight)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip1)
@@ -358,6 +341,5 @@ Partial Class Main
     Friend WithEvents lblLastLightEarned As System.Windows.Forms.Label
     Friend WithEvents pictureJob As System.Windows.Forms.PictureBox
     Friend WithEvents lblLightPerHour As System.Windows.Forms.Label
-    Friend WithEvents Button1 As System.Windows.Forms.Button
 
 End Class

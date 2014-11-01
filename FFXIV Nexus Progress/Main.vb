@@ -98,6 +98,7 @@ Public Class Main
         If Not _memory.AttachToProcess(Me.comboProcesses.SelectedItem) Then
             MsgBox("Failed to attach to FFXIV process ID: " & Me.comboProcesses.SelectedItem, MsgBoxStyle.Critical, "Process Error")
             Me.comboProcesses.SelectedItem = Nothing
+            _oldSelectedProcess = Nothing
         Else
             _memory.CalculateAddresses(My.Settings.InventoryAddress, My.Settings.EquippedWeaponIDOffset, My.Settings.EquippedShieldIDOffset)
 
@@ -287,10 +288,6 @@ Public Class Main
 
     Private Sub BonusLightToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BonusLightToolStripMenuItem.Click
         System.Diagnostics.Process.Start("http://www.reddit.com/live/tlfmtjl4fteo")
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        MsgBox("Hey! In the spirit of information for everyone, I'm just sharing (not so publicly) something I stumbled upon myself." & vbCrLf & vbCrLf & "You can stupidly easily instantly, temporarily max your light then grab your nexus without farming a single light at all.  It works, but it's obviously an exploit and is far more out-reaching and powerful than I care to share." & vbCrLf & vbCrLf & "The more you know!", MsgBoxStyle.OkOnly, "Fun Fact")
     End Sub
 
 
