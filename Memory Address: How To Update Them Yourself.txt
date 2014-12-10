@@ -33,5 +33,8 @@ PLUS
   If you are confident your memory fix works, I will merge them. If any of you reading this are Github savvy and wish to take over moderating pull requests, let me know.
   
   
+  
+If you absolutely WANT this app to be working, and absolutely CANT do this, email me and I'll step you through the process in 10 minutes!
+  
 Cheers all,
 SG57
