@@ -1,7 +1,7 @@
 WorkingDate = 12/9/2014
 
 
-InventoryAddress = 0x103C32, 0x0
+InventoryAddress = 0x103C320, 0x0
 
 EquippedWeaponIDOffset = 0x1988
 
