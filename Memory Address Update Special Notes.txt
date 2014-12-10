@@ -1,0 +1,35 @@
+=====================================================================================================
+========  Here are some notes around updating the memory addresses for this app yourself!  ==========
+=====================================================================================================
+
+
+Overview:
+  1.) Find the current equipped weapon ID address
+
+  2.) Calculate then add this address manually:
+
+the current equipped weapon ID address  (as found in Step #1)
+MINUS
+the current weapon ID offset  (which happens to be 0x1988 right now)
+PLUS
+0x8  (silly, but required as this address DOES get accessed in-game a lot)
+
+3.) Continue on as normal using the above calculated address.
+  You will follow the "find what accesses this address" route. Copy the easy guess to clipboard. Scan for that easy-guess as hex.
+  In only 2-levels, you should hit a static address, as indicated by a "green" label in CheatEngine.
+  That static address is calculated by: "ffxiv.exe+{OFFSET}", where {OFFSET} is some hex number that is your inventory address offset.
+  
+  *****That static address {OFFSET} SHOULD be the ONLY thing that requires updating each patch!!!*******
+  *****The other offsets likely will NOT change, such as spirit bond offset, shield, weapon, etc.*****
+  
+4.) Once you have acquired the NEW Inventory address offset, time to update the app so all may use it.
+  Go to this github project, click the 'Memory-Addresses.txt' file on the root of the project, and click the 'edit' pencil icon in the top right.
+  There, you should modify the InventoryAddress line to the NEW address as found through the process above; typically just the first offset in the comma-separated list: ie, InventoryAddress = 0x123456, 0x0
+  You should also modify the 'last confirmed working date' to the day's date (plus any other information on that same line is supported)
+  
+5.) Commit and save the changes to the file.  Immediately after, create a "PULL REQUEST" on the next page and it will alert me to merge your fix. 
+  If you are confident your memory fix works, I will merge them. If any of you reading this are Github savvy and wish to take over moderating pull requests, let me know.
+  
+  
+Cheers all,
+SG57
