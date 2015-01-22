@@ -45,6 +45,7 @@ Partial Class Main
         Me.checkShield = New System.Windows.Forms.CheckBox()
         Me.lblProgress = New System.Windows.Forms.Label()
         Me.progressLight = New System.Windows.Forms.ProgressBar()
+        Me.checkAlwaysOnTop = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.grpLight.SuspendLayout()
@@ -290,13 +291,28 @@ Partial Class Main
         Me.progressLight.Size = New System.Drawing.Size(233, 32)
         Me.progressLight.TabIndex = 27
         '
+        'checkAlwaysOnTop
+        '
+        Me.checkAlwaysOnTop.AutoSize = True
+        Me.checkAlwaysOnTop.BackColor = System.Drawing.Color.Transparent
+        Me.checkAlwaysOnTop.Checked = True
+        Me.checkAlwaysOnTop.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.checkAlwaysOnTop.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.checkAlwaysOnTop.Location = New System.Drawing.Point(295, 303)
+        Me.checkAlwaysOnTop.Name = "checkAlwaysOnTop"
+        Me.checkAlwaysOnTop.Size = New System.Drawing.Size(104, 17)
+        Me.checkAlwaysOnTop.TabIndex = 38
+        Me.checkAlwaysOnTop.Text = "Always On Top"
+        Me.checkAlwaysOnTop.UseVisualStyleBackColor = False
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ClientSize = New System.Drawing.Size(438, 309)
+        Me.ClientSize = New System.Drawing.Size(438, 323)
+        Me.Controls.Add(Me.checkAlwaysOnTop)
         Me.Controls.Add(Me.grpLight)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip1)
@@ -341,5 +357,6 @@ Partial Class Main
     Friend WithEvents lblLastLightEarned As System.Windows.Forms.Label
     Friend WithEvents pictureJob As System.Windows.Forms.PictureBox
     Friend WithEvents lblLightPerHour As System.Windows.Forms.Label
+    Friend WithEvents checkAlwaysOnTop As System.Windows.Forms.CheckBox
 
 End Class

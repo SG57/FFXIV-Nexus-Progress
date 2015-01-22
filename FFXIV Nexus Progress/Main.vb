@@ -26,6 +26,11 @@ Public Class Main
         System.Diagnostics.Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=JordanSg57%40gmail%2ecom&lc=US&item_name=Freelance%20Developer&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted")
     End Sub
 
+    Public Sub checkAlwaysOnTop_CheckedChanged(sender As Object, e As EventArgs) Handles checkAlwaysOnTop.CheckedChanged
+        Me.TopMost = checkAlwaysOnTop.Checked
+        My.Settings.AlwaysOnTop = checkAlwaysOnTop.Checked
+        My.Settings.Save()
+    End Sub
 
 
 
@@ -49,7 +54,13 @@ Public Class Main
         refreshProcessComboBoxItems()
     End Sub
 
-
+    Private Sub Main_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        ' top most load
+        Me.TopMost = My.Settings.AlwaysOnTop
+        RemoveHandler Me.checkAlwaysOnTop.CheckedChanged, AddressOf checkAlwaysOnTop_CheckedChanged
+        checkAlwaysOnTop.Checked = Me.TopMost
+        AddHandler Me.checkAlwaysOnTop.CheckedChanged, AddressOf checkAlwaysOnTop_CheckedChanged
+    End Sub
 
 
 
