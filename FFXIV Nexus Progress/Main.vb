@@ -178,7 +178,7 @@ Public Class Main
             _memory.CalculateAddresses(My.Settings.InventoryAddress, My.Settings.EquippedWeaponIDOffset, My.Settings.EquippedShieldIDOffset)
             
 
-            MsgBox("Successfully updated to the memory addresses that were working as of: " & vbCrLf & vbCrLf & working_date & vbCrLf & vbCrLf & "NOTE: These are only valid for the first character log-in!", MsgBoxStyle.Information, "Updated Memory Addresses")
+            MsgBox("Successfully updated to the memory addresses that were working as of: " & vbCrLf & vbCrLf & working_date & vbCrLf & vbCrLf & "NOTE: These MAY be only valid for the first character log-in!", MsgBoxStyle.Information, "Updated Memory Addresses")
 
 
         Catch ex As WebException
@@ -273,8 +273,8 @@ Public Class Main
         Me.lblProgress.Text = Me.progressLight.Value.ToString("N0") & " / 2,000" & vbCrLf & My.Settings.NexusNames(GetIndexForID(ID))
         Me.grpLight.Text = "Light - " & Math.Floor(progressLight.Value / progressLight.Maximum * 100) & "% - " & My.Settings.NexusTiers(Math.Floor(progressLight.Value / 200)) & " Activity"
 
-        Me.lblBrightsRemaining.Text = "Brights" & vbCrLf & "-" & Math.Ceiling((2000 - Me.progressLight.Value) / 4).ToString("N0")
-        Me.lblGentlesRemaining.Text = "Gentles" & vbCrLf & "-" & Math.Ceiling((2000 - Me.progressLight.Value) / 2).ToString("N0")
+        Me.lblBrightsRemaining.Text = "Brights" & vbCrLf & "-" & Math.Ceiling((2000 - Me.progressLight.Value) / 8).ToString("N0")
+        Me.lblGentlesRemaining.Text = "Gentles" & vbCrLf & "-" & Math.Ceiling((2000 - Me.progressLight.Value) / 4).ToString("N0")
     End Sub
 
     Private Sub RecordLastLight(ByVal ID As Int32, ByVal light As Integer)
