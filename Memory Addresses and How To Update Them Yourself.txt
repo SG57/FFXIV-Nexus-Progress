@@ -6,9 +6,14 @@ I assume you have CheatEngine, and you are not completely new to the tool.
 
 
 Process Overview:
-  1.) Find the current equipped weapon ID address.  There will be 2, usually it's the 2nd one (to verify: it's whichever one DOESNT have readable text when you browse the memory region)
+  1.) Find the current equipped weapon ID address.
+     1. To do this, equip a weapon, scan for some unknown initial value.
+     2. Change your weapon then filter the old scan results by scanning "next" for a different unknown value
+     3. Switch back to the original 1st scanned weapon, now filter the already filtered results more via compare to 1st scan for an unchanged value.
+     4. Repeat 2 & 3 until there will be 2 addresses remaining that change together as you change weapons around.
+     You need to use the one with the most "."'s (periods) everywhere when you browse its memory region.
 
-  2.) Calculate this address in MS Calculator in Programmer-Hex mode, then add this address manually to the list:
+  2.) Calculate the following address in MS Calculator in Programmer-Hex mode, then add this address manually to the list:
 
 the current equipped weapon ID address  (as found in Step #1)
 MINUS
