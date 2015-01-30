@@ -60,6 +60,19 @@ Public Class Main
         RemoveHandler Me.checkAlwaysOnTop.CheckedChanged, AddressOf checkAlwaysOnTop_CheckedChanged
         checkAlwaysOnTop.Checked = Me.TopMost
         AddHandler Me.checkAlwaysOnTop.CheckedChanged, AddressOf checkAlwaysOnTop_CheckedChanged
+
+        ' opacity
+        Me.Opacity = My.Settings.Opacity / 100 + 0.5
+        RemoveHandler Me.sliderOpacity.ValueChanged, AddressOf sliderOpacity_ValueChanged
+        sliderOpacity.Value = My.Settings.Opacity
+        AddHandler Me.sliderOpacity.ValueChanged, AddressOf sliderOpacity_ValueChanged
+    End Sub
+
+
+    Private Sub sliderOpacity_ValueChanged(sender As Object, e As EventArgs) Handles sliderOpacity.ValueChanged
+        Me.Opacity = sliderOpacity.Value / 100 + 0.5
+        My.Settings.Opacity = sliderOpacity.Value
+        My.Settings.Save()
     End Sub
 
 
