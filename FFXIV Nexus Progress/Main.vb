@@ -6,6 +6,9 @@ Public Class Main
     ' url to the memory address config file
     Const MEMORY_ADDRESSES_CONFIG_URL = "https://raw.githubusercontent.com/SG57/FFXIV-Nexus-Progress/master/Memory-Addresses.txt"
 
+    Const LIGHT_PER_BRIGHT = 8
+    Const LIGHT_PER_GENTLE = 4
+
 
 
     Dim _memory As Memory = New Memory
@@ -286,8 +289,8 @@ Public Class Main
         Me.lblProgress.Text = Me.progressLight.Value.ToString("N0") & " / 2,000" & vbCrLf & My.Settings.NexusNames(GetIndexForID(ID))
         Me.grpLight.Text = "Light - " & Math.Floor(progressLight.Value / progressLight.Maximum * 100) & "% - " & My.Settings.NexusTiers(Math.Floor(progressLight.Value / 200)) & " Activity"
 
-        Me.lblBrightsRemaining.Text = "Brights" & vbCrLf & "-" & Math.Ceiling((2000 - Me.progressLight.Value) / 8).ToString("N0")
-        Me.lblGentlesRemaining.Text = "Gentles" & vbCrLf & "-" & Math.Ceiling((2000 - Me.progressLight.Value) / 4).ToString("N0")
+        Me.lblBrightsRemaining.Text = "Brights" & vbCrLf & "-" & Math.Ceiling((2000 - Me.progressLight.Value) / LIGHT_PER_BRIGHT).ToString("N0")
+        Me.lblGentlesRemaining.Text = "Gentles" & vbCrLf & "-" & Math.Ceiling((2000 - Me.progressLight.Value) / LIGHT_PER_GENTLE).ToString("N0")
     End Sub
 
     Private Sub RecordLastLight(ByVal ID As Int32, ByVal light As Integer)
