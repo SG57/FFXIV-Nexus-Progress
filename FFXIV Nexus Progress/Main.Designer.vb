@@ -59,6 +59,7 @@ Partial Class Main
         'MenuStrip1
         '
         Me.MenuStrip1.BackColor = System.Drawing.Color.Transparent
+        Me.MenuStrip1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem, Me.DonateToolStripMenuItem, Me.CheckForUpdateToolStripMenuItem, Me.LightInfoToolStripMenuItem, Me.BonusLightToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
@@ -198,10 +199,10 @@ Partial Class Main
         Me.GroupBox1.Controls.Add(Me.comboProcesses)
         Me.GroupBox1.Controls.Add(Me.Label1)
         Me.GroupBox1.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.GroupBox1.Font = New System.Drawing.Font("Monotype Corsiva", 18.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(39, 20)
+        Me.GroupBox1.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Italic)
+        Me.GroupBox1.Location = New System.Drawing.Point(41, 20)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(360, 290)
+        Me.GroupBox1.Size = New System.Drawing.Size(360, 280)
         Me.GroupBox1.TabIndex = 25
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Process"
@@ -214,7 +215,6 @@ Partial Class Main
         Me.comboProcesses.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.comboProcesses.ForeColor = System.Drawing.Color.Black
         Me.comboProcesses.FormattingEnabled = True
-        Me.comboProcesses.Items.AddRange(New Object() {"0"})
         Me.comboProcesses.Location = New System.Drawing.Point(204, 25)
         Me.comboProcesses.Name = "comboProcesses"
         Me.comboProcesses.Size = New System.Drawing.Size(121, 37)
@@ -223,18 +223,17 @@ Partial Class Main
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(40, 34)
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 16.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Location = New System.Drawing.Point(23, 31)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(164, 20)
+        Me.Label1.Size = New System.Drawing.Size(174, 27)
         Me.Label1.TabIndex = 13
         Me.Label1.Text = "FFXIV Process ID :"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'grpLight
         '
-        Me.grpLight.Controls.Add(Me.btnCompactify)
         Me.grpLight.Controls.Add(Me.lblLightPerHour)
         Me.grpLight.Controls.Add(Me.pictureJob)
         Me.grpLight.Controls.Add(Me.lblTotalLightToday)
@@ -244,25 +243,26 @@ Partial Class Main
         Me.grpLight.Controls.Add(Me.checkShield)
         Me.grpLight.Controls.Add(Me.lblProgress)
         Me.grpLight.Controls.Add(Me.progressLight)
-        Me.grpLight.Font = New System.Drawing.Font("Monotype Corsiva", 18.0!, System.Drawing.FontStyle.Italic)
-        Me.grpLight.Location = New System.Drawing.Point(57, 89)
+        Me.grpLight.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Italic)
+        Me.grpLight.Location = New System.Drawing.Point(57, 85)
         Me.grpLight.Name = "grpLight"
-        Me.grpLight.Size = New System.Drawing.Size(324, 215)
+        Me.grpLight.Size = New System.Drawing.Size(324, 206)
         Me.grpLight.TabIndex = 32
         Me.grpLight.TabStop = False
         Me.grpLight.Text = "Light"
         '
         'btnCompactify
         '
-        Me.btnCompactify.BackColor = System.Drawing.SystemColors.Control
+        Me.btnCompactify.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.btnCompactify.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCompactify.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCompactify.Location = New System.Drawing.Point(26, 185)
+        Me.btnCompactify.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCompactify.Location = New System.Drawing.Point(5, 36)
         Me.btnCompactify.Name = "btnCompactify"
-        Me.btnCompactify.Size = New System.Drawing.Size(68, 22)
+        Me.btnCompactify.Size = New System.Drawing.Size(30, 102)
         Me.btnCompactify.TabIndex = 38
-        Me.btnCompactify.Text = "Compact"
+        Me.btnCompactify.Text = "C" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "O" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "M" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "P" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "A" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "C" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "T"
         Me.btnCompactify.UseVisualStyleBackColor = False
+        Me.btnCompactify.Visible = False
         '
         'pictureJob
         '
@@ -278,10 +278,11 @@ Partial Class Main
         '
         Me.checkShield.AutoSize = True
         Me.checkShield.BackColor = System.Drawing.Color.Transparent
-        Me.checkShield.Font = New System.Drawing.Font("Monotype Corsiva", 12.0!, System.Drawing.FontStyle.Italic)
-        Me.checkShield.Location = New System.Drawing.Point(244, 185)
+        Me.checkShield.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.checkShield.Font = New System.Drawing.Font("Calibri", 12.0!)
+        Me.checkShield.Location = New System.Drawing.Point(247, 182)
         Me.checkShield.Name = "checkShield"
-        Me.checkShield.Size = New System.Drawing.Size(63, 22)
+        Me.checkShield.Size = New System.Drawing.Size(64, 23)
         Me.checkShield.TabIndex = 31
         Me.checkShield.Text = "Shield"
         Me.checkShield.UseVisualStyleBackColor = False
@@ -310,14 +311,14 @@ Partial Class Main
         '
         'checkAlwaysOnTop
         '
-        Me.checkAlwaysOnTop.AutoSize = True
         Me.checkAlwaysOnTop.BackColor = System.Drawing.Color.Transparent
         Me.checkAlwaysOnTop.Checked = True
         Me.checkAlwaysOnTop.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.checkAlwaysOnTop.Font = New System.Drawing.Font("Consolas", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.checkAlwaysOnTop.Location = New System.Drawing.Point(295, 312)
+        Me.checkAlwaysOnTop.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.checkAlwaysOnTop.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.checkAlwaysOnTop.Location = New System.Drawing.Point(318, 300)
         Me.checkAlwaysOnTop.Name = "checkAlwaysOnTop"
-        Me.checkAlwaysOnTop.Size = New System.Drawing.Size(104, 17)
+        Me.checkAlwaysOnTop.Size = New System.Drawing.Size(106, 19)
         Me.checkAlwaysOnTop.TabIndex = 38
         Me.checkAlwaysOnTop.Text = "Always On Top"
         Me.checkAlwaysOnTop.UseVisualStyleBackColor = False
@@ -325,7 +326,7 @@ Partial Class Main
         'sliderOpacity
         '
         Me.sliderOpacity.AutoSize = False
-        Me.sliderOpacity.Location = New System.Drawing.Point(401, 36)
+        Me.sliderOpacity.Location = New System.Drawing.Point(403, 36)
         Me.sliderOpacity.Maximum = 50
         Me.sliderOpacity.Name = "sliderOpacity"
         Me.sliderOpacity.Orientation = System.Windows.Forms.Orientation.Vertical
@@ -338,11 +339,11 @@ Partial Class Main
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(419, 75)
+        Me.Label2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(421, 61)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(16, 91)
+        Me.Label2.Size = New System.Drawing.Size(16, 105)
         Me.Label2.TabIndex = 40
         Me.Label2.Text = "O" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "P" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "A" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "C" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "I" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "T" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Y"
         Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -353,13 +354,14 @@ Partial Class Main
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ClientSize = New System.Drawing.Size(438, 329)
-        Me.Controls.Add(Me.checkAlwaysOnTop)
+        Me.ClientSize = New System.Drawing.Size(438, 319)
+        Me.Controls.Add(Me.btnCompactify)
         Me.Controls.Add(Me.grpLight)
-        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Controls.Add(Me.sliderOpacity)
         Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.checkAlwaysOnTop)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
