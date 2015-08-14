@@ -6,8 +6,8 @@ Public Class Main
     ' url to the memory address config file
     Const MEMORY_ADDRESSES_CONFIG_URL = "https://raw.githubusercontent.com/SG57/FFXIV-Nexus-Progress/master/Memory-Addresses.txt"
 
-    Const LIGHT_PER_BRIGHT = 8
-    Const LIGHT_PER_GENTLE = 4
+    Const LIGHT_PER_BRIGHT = 16
+    Const LIGHT_PER_GENTLE = 8
 
 
 
