@@ -1,7 +1,9 @@
 WorkingDate = 10/09/2015 - Patch 3.07 - Heavensward
 
 
-InventoryAddress = 0x01672390, 0x0
+InventoryAddress = 0x010340F8, 0x0
+
+InventoryAddressDX11 = 0x01672390, 0x0
 
 EquippedWeaponIDOffset = 0x1988
 
